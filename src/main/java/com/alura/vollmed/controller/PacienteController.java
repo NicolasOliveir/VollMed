@@ -3,6 +3,8 @@ package com.alura.vollmed.controller;
 import com.alura.vollmed.paciente.DadosCadastroPaciente;
 import com.alura.vollmed.paciente.Paciente;
 import com.alura.vollmed.repository.PacienteRepository;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +19,8 @@ public class PacienteController {
     private PacienteRepository pacienteRepository;
 
     @PostMapping
-    public void cadastroPaciente(@RequestBody DadosCadastroPaciente paciente){
+    @Transactional
+    public void cadastroPaciente(@RequestBody @Valid DadosCadastroPaciente paciente){
         pacienteRepository.save(new Paciente(paciente));
     }
 }

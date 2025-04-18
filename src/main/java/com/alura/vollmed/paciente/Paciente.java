@@ -30,6 +30,6 @@ public class Paciente {
         this.email = paciente.email();
         this.telefone = paciente.telefone();
         this.cpf = paciente.cpf();
-        this.endereco = paciente.endereco();
+        this.endereco = new Endereco(paciente.endereco());
     }
 }

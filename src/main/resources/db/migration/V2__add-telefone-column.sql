@@ -1,0 +1,1 @@
+alter table medicos add if not exists telefone varchar(20) not null;

@@ -3,3 +3,7 @@ spring:
     url: jdbc:postgresql://localhost/alura_vollmed
     username: postgres
     password: 123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

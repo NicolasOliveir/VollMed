@@ -1,7 +1,10 @@
 package com.alura.vollmed.paciente;
 
-import com.alura.vollmed.endereco.Endereco;
+import com.alura.vollmed.endereco.DadosEndereco;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 public record DadosCadastroPaciente(
         @NotBlank
@@ -11,6 +14,8 @@ public record DadosCadastroPaciente(
         @NotBlank
         String telefone,
         @NotBlank
+        @Pattern(regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$", message = "cpf inválido!!!")
         String cpf,
-        @NotBlank
-        Endereco endereco ) { }
+
+        @NotNull @Valid
+        DadosEndereco endereco ) { }
