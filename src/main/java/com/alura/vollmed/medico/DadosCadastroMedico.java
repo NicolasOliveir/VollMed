@@ -13,7 +13,6 @@ public record DadosCadastroMedico(
         @NotBlank
         @Email
         String email,
-
         @NotBlank
         String telefone,
         @NotBlank
@@ -22,5 +21,6 @@ public record DadosCadastroMedico(
         @NotNull
         EspecialidadeEnum especialidade,
 
-        @NotNull @Valid DadosEndereco endereco) {
+        @NotNull @Valid
+        DadosEndereco endereco) {
 }

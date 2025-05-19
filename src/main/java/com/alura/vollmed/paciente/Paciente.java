@@ -2,6 +2,7 @@ package com.alura.vollmed.paciente;
 
 import com.alura.vollmed.endereco.Endereco;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,11 +26,30 @@ public class Paciente {
     @Embedded
     private Endereco endereco;
 
+    private Boolean ativo;
+
     public Paciente(DadosCadastroPaciente paciente) {
         this.nome = paciente.nome();
         this.email = paciente.email();
         this.telefone = paciente.telefone();
         this.cpf = paciente.cpf();
         this.endereco = new Endereco(paciente.endereco());
+        this.ativo = true;
+    }
+
+    public void atualizarInformacoes(@Valid DadosAtualizacaoPaciente dados) {
+        if (dados.nome() == null){
+            this.nome = dados.nome();
+        }
+        if (dados.telefone() == null){
+            this.telefone = dados.telefone();
+        }
+        if (dados.endereco() == null){
+            this.endereco.atualizarInformacoes(dados.endereco());
+        }
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }
